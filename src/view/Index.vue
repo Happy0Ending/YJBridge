@@ -1,4 +1,15 @@
 <template>
+  <div class="timer">
+    <Timer></Timer>
+  </div>
+  <div class="weather-top">
+    <div class="weather-icon1"></div>
+    <div class="weather-icon2"></div>
+  </div>
+  <Weather v-if="isShowWeather"></Weather>
+  <Timeline v-if="isShowTimeline"></Timeline>
+  <FunList v-if="isShowFunlist"></FunList>
+  <div class="wheather"></div>
   <div class="top" id="top-id">京港澳高速汉江特大桥健康监测</div>
   <div class="left" id="left-id">
     <div class="left-bridge-base">
@@ -60,7 +71,12 @@
 
           <image
             src="/img/car-station.png"
-            style="position: absolute; top:50%;left: 40%;transform: translate(-50%);"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 40%;
+              transform: translate(-50%);
+            "
             width="105"
             height="70"
           ></image>
@@ -171,7 +187,12 @@
       </div>
     </div>
   </div>
-  <div class="bottom"></div>
+  <div class="bottom">
+    <div class="QJRQX">
+      <div class="title-second">已处理告警统计</div>
+      <div id="QJRQX-chart"></div>
+    </div>
+  </div>
   <div class="center">
     <div class="center-modal" id="center-id"></div>
     <iframe
@@ -185,6 +206,14 @@
   </div> -->
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
+import Timer from "../components/Timer.vue";
+import Weather from "../components/Weather.vue";
+import Timeline from "../components/timeline.vue";
+import FunList from "../components/FunList.vue";
+const isShowWeather = ref(true);
+const isShowTimeline = ref(true);
+const isShowFunlist = ref(true);
 const url = "";
 const tesjfxList = [
   { title: "车辆超载", url: "/img/clcz.png", value: 65 },
@@ -198,9 +227,15 @@ const tesjfxList = [
 </script>
 <style lang="scss">
 @keyframes aniCar {
-0% { margin-top: 0; opacity: 1}
+  0% {
+    margin-top: 0;
+    opacity: 1;
+  }
 
-100% { margin-top: 20px; opacity: 0}
+  100% {
+    margin-top: 20px;
+    opacity: 0;
+  }
 }
 .title-second {
   width: 368px;
@@ -501,13 +536,23 @@ const tesjfxList = [
   transition: bottom 4s;
   -webkit-transition: bottom 4s;
   position: absolute;
-  bottom: 0%;
-  height: 4%;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 300px;
   width: 100%;
-  background: url("/img/3D/底部装饰.png") no-repeat center;
-  background-size: contain;
   display: flex;
   align-items: center;
+  #QJRQX-chart {
+    widows: 500px;
+    height: 220px;
+
+  }
+  #SLJC-chart {
+    widows: 500px;
+    height: 220px;
+
+  }
 }
 .top {
   z-index: 10;
@@ -544,6 +589,39 @@ const tesjfxList = [
     -webkit-transition: opacity 4s;
     top: 0%;
     left: 0%;
+  }
+}
+.timer {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  z-index: 20;
+  font-size: 20px;
+}
+.weather-top {
+  position: absolute;
+  right: 10px;
+  z-index: 20;
+  top: 10px;
+  width: 80px;
+  height: 44px;
+  display: flex;
+  gap: 10px;
+  .weather-icon2 {
+    width: 60px;
+    height: 44px;
+    background-image: url("/img/weather.png");
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+  }
+  .weather-icon1 {
+    width: 60px;
+    height: 44px;
+    background-image: url("/img/timeline.png");
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
   }
 }
 </style>
