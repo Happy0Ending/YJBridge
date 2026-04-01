@@ -2,6 +2,7 @@
   <div class="timer">
     <Timer></Timer>
   </div>
+  <CGQModal v-if="isShowCGQ" @close="()=>{isShowCGQ = false}"></CGQModal>
   <div class="weather-top">
     <div
       class="weather-icon1"
@@ -236,8 +237,10 @@ import Timer from "../components/Timer.vue";
 import Weather from "../components/Weather.vue";
 import Timeline from "../components/Timeline.vue";
 import FunList from "../components/FunList.vue";
+import CGQModal from "../components/CGQModal.vue";
 import { createQQNQX } from "../chart/qqnqx";
 import { createSLJC } from "../chart/sljc";
+const isShowCGQ = ref(true);
 const backView = ()=>{
   const iframe = document.getElementById("iframeRender");
   if (iframe) {
