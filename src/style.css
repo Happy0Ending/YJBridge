@@ -12,3 +12,12 @@ body {
   margin: 0;
   background-color: black;
 }
+
+
+.linear-text {
+  background: linear-gradient(to bottom, #ffffff, #a4f7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

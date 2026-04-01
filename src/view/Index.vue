@@ -204,6 +204,9 @@
   <!-- <div class="center">
     <iframe id="iframeRender" style="width: 100%; height: 100%"></iframe>
   </div> -->
+  <!-- <AlterDialog ref="dialogRef"></AlterDialog> -->
+  <StatisticsDialog ref="statisticsDialogRef"></StatisticsDialog>
+  <!-- <Monitor ></Monitor> -->
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -224,6 +227,9 @@ const tesjfxList = [
   { title: "地震", url: "/img/dz.png", value: 65 },
   { title: "涡振", url: "/img/wz.png", value: 65 },
 ];
+import AlterDialog from '../components/MainBeamDeflection.vue'
+import StatisticsDialog from '../components/Statistics.vue'
+import Monitor from '../components/Monitor.vue'
 </script>
 <style lang="scss">
 @keyframes aniCar {
