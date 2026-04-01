@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "PMZD";
+    src: url("1609897186334086.ttf");
+}
+@font-face {
+    font-family: "Bold";
+    src: url("TG-TYPE-Bold.otf");
+}
+@font-face {
+    font-family: "TG-TYPE-Regular";
+    src: url("TG-TYPE-Regular.otf");
+}
+@font-face {
+    font-family: "Rajdhani-Bold";
+    src: url("Rajdhani-Bold.ttf");
+}
+@font-face {
+    font-family: "Rajdhani";
+    src: url("Rajdhani-Medium.ttf");
+}
+/* 思源黑体 CN Medium */
+@font-face {
+    font-family: "PingFang SC";
+    src: url("CN-Medium.otf");
+}
