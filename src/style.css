@@ -1,7 +1,14 @@
-#app{
-width: 100vw;
-height: 100vh;
+#app {
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  padding-left: 0px;
 }
-html{
-  
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background-color: black;
 }
