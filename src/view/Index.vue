@@ -8,8 +8,14 @@
   <div class="center">
     <iframe id="iframeRender" style="width: 100%; height: 100%"></iframe>
   </div>
+  <!-- <AlterDialog ref="dialogRef"></AlterDialog> -->
+  <StatisticsDialog ref="statisticsDialogRef"></StatisticsDialog>
+  <!-- <Monitor ></Monitor> -->
 </template>
 <script setup lang="ts">
+import AlterDialog from '../components/MainBeamDeflection.vue'
+import StatisticsDialog from '../components/Statistics.vue'
+import Monitor from '../components/Monitor.vue'
 </script>
 <style lang="scss">
 .left {

@@ -1,7 +1,14 @@
-#app{
-width: 100vw;
-height: 100vh;
+#app {
+  width: 100vw;
+  height: 100vh;
 }
-html{
-  
+
+.linear-text {
+  background: linear-gradient(to bottom, #ffffff, #a4f7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html {
 }
