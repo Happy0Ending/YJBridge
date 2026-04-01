@@ -3,7 +3,7 @@
   <div class="weather-body">
     <div class="weather-bg"><span>天气系统</span></div>
     <div class="weather-type">
-      <div v-for="weatherType in weatherTypes" class="weatherType-body">
+      <div v-for="weatherType in weatherTypes" class="weatherType-body" v-on:click="()=>{sendMessage(weatherType.message)}">
         <div :style="{width:'20px',height:'20px',backgroundImage:`url(${weatherType.url})`,backgroundPosition:'center',backgroundSize:'cover'}"></div>
         <div class="weather-title">{{ weatherType.title }}</div>
       </div>
@@ -12,6 +12,13 @@
 </template>
 
 <script setup lang="ts">
+const sendMessage = (message:string)=>{
+  const iframe = document.getElementById("iframeRender");
+  if (iframe) {
+    iframe.contentWindow.postMessage(JSON.stringify({name: message}), '*');
+    console.log("发送天气消息",message);
+  }
+}
 const weatherTypes = [
   { title: "晴天", url: "/weather/qingtian.png", message: "qingtian" },
   { title: "多云", url: "/weather/duoyun.png", message: "duoyun" },
@@ -25,11 +32,13 @@ const weatherTypes = [
 
 <style scoped lang="scss">
 .weather-body {
+  user-select: none;
   position: absolute;
   top: 88px;
   right: 420px;
   width: 132px;
   height: 258px;
+  z-index:20;
   background: linear-gradient(
     180deg,
     #2b81dc 7%,
@@ -76,6 +85,7 @@ const weatherTypes = [
       background-image: url("/weather/wea-bg.png");
       background-size: cover;
       background-position: center;
+      cursor: pointer;
       .weather-title {
         background: linear-gradient(180deg, #ffffff 39%, #aee3ff 74%);
         font-size: 16px;

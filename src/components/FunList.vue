@@ -8,12 +8,46 @@
 
 <script setup lang="ts">
 const funList = [
-  { title: "建构监测", fun: () => {} },
-  { title: "挠度孪生", fun: () => {} },
-  { title: "结构云图", fun: () => {} },
-  { title: "视频巡检", fun: () => {} },
-  { title: "数字漫游", fun: () => {} },
-  { title: "车辆跟踪", fun: () => {} },
+  {
+    title: "结构监测",
+    fun: () => {
+      console.log("结构监测");
+    },
+  },
+  {
+    title: "挠度孪生",
+    fun: () => {
+      const iframe = document.getElementById("iframeRender");
+      if (iframe) {
+        iframe.contentWindow.postMessage(JSON.stringify({name:"wz1"}), "*");
+        console.log("发送天气消息", "wz");
+      }
+    },
+  },
+  {
+    title: "结构云图",
+    fun: () => {
+      console.log("结构云图");
+    },
+  },
+  {
+    title: "视频巡检",
+    fun: () => {
+      console.log("视频巡检");
+    },
+  },
+  {
+    title: "数字漫游",
+    fun: () => {
+      console.log("数字漫游");
+    },
+  },
+  {
+    title: "车辆跟踪",
+    fun: () => {
+      console.log("车辆跟踪");
+    },
+  },
 ];
 </script>
 
@@ -22,9 +56,11 @@ const funList = [
   position: absolute;
   left: 480px;
   top: 100px;
+  z-index: 20;
   .fun-tab {
-    width:125px ;
+    width: 125px;
     height: 34px;
+    cursor: pointer;
     background-image: url("/img/fun-bg.png");
     background-size: cover;
     background-position: center;

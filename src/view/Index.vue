@@ -3,8 +3,22 @@
     <Timer></Timer>
   </div>
   <div class="weather-top">
-    <div class="weather-icon1"></div>
-    <div class="weather-icon2"></div>
+    <div
+      class="weather-icon1"
+      v-on:click="
+        () => {
+          isShowTimeline = !isShowTimeline;
+        }
+      "
+    ></div>
+    <div
+      class="weather-icon2"
+      v-on:click="
+        () => {
+          isShowWeather = !isShowWeather;
+        }
+      "
+    ></div>
   </div>
   <Weather v-if="isShowWeather"></Weather>
   <Timeline v-if="isShowTimeline"></Timeline>
@@ -104,7 +118,7 @@
   </div>
   <div class="right" id="right-id">
     <div class="JGJC">
-      <div class="title-second">交通载荷统计</div>
+      <div class="title-second">结构监测</div>
       <div class="JGJC-body">
         <div class="JGJC-flex">
           <div>
@@ -192,6 +206,14 @@
       <div class="title-second">已处理告警统计</div>
       <div id="QJRQX-chart"></div>
     </div>
+    <div class="SLJC">
+      <div class="title-second">已处理告警统计</div>
+      <div id="SLJC-chart"></div>
+    </div>
+  </div>
+  <div class="bottom-view" v-on:click="backView">
+    <div class="view"></div>
+    <div>还原</div>
   </div>
   <div class="center">
     <div class="center-modal" id="center-id"></div>
@@ -209,11 +231,20 @@
   <!-- <Monitor ></Monitor> -->
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import Timer from "../components/Timer.vue";
 import Weather from "../components/Weather.vue";
-import Timeline from "../components/timeline.vue";
+import Timeline from "../components/Timeline.vue";
 import FunList from "../components/FunList.vue";
+import { createQQNQX } from "../chart/qqnqx";
+import { createSLJC } from "../chart/sljc";
+const backView = ()=>{
+  const iframe = document.getElementById("iframeRender");
+  if (iframe) {
+    iframe.contentWindow.postMessage(JSON.stringify({name:"back"}), "*");
+    console.log("发送还原消息", "backView");
+  }
+}
 const isShowWeather = ref(true);
 const isShowTimeline = ref(true);
 const isShowFunlist = ref(true);
@@ -227,9 +258,26 @@ const tesjfxList = [
   { title: "地震", url: "/img/dz.png", value: 65 },
   { title: "涡振", url: "/img/wz.png", value: 65 },
 ];
-import AlterDialog from '../components/MainBeamDeflection.vue'
-import StatisticsDialog from '../components/Statistics.vue'
-import Monitor from '../components/Monitor.vue'
+let chart1 = null;
+let chart2 = null;
+onMounted(() => {
+  chart1 = createQQNQX();
+  chart2 = createSLJC();
+  // setTimeout(() => {
+  //   isShowWeather.value = false;
+  // }, 5000);
+});
+onUnmounted(() => {
+  if (chart1) {
+    chart1.dispose();
+  }
+  if (chart2) {
+    chart2.dispose();
+  }
+});
+import AlterDialog from "../components/MainBeamDeflection.vue";
+import StatisticsDialog from "../components/Statistics.vue";
+import Monitor from "../components/Monitor.vue";
 </script>
 <style lang="scss">
 @keyframes aniCar {
@@ -262,8 +310,9 @@ import Monitor from '../components/Monitor.vue'
 .flex-1 {
   display: flex;
   padding-left: 30px;
+  padding-top: 25px;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
 }
 .flex-event {
   display: flex;
@@ -472,9 +521,9 @@ import Monitor from '../components/Monitor.vue'
     .JGJC-body {
       padding-top: 24px;
       padding-left: 19px;
-      height: 25vh;
+      padding-bottom: 40px;
       display: flex;
-      gap: 10px;
+      gap: 15px;
       flex-wrap: wrap;
       .JGJC-flex {
         width: 167px;
@@ -546,18 +595,23 @@ import Monitor from '../components/Monitor.vue'
   left: 50%;
   transform: translate(-50%);
   height: 300px;
-  width: 100%;
+  // width: 100%;
   display: flex;
   align-items: center;
+  .QJRQX {
+    width: 500px;
+  }
   #QJRQX-chart {
     widows: 500px;
     height: 220px;
-
+  }
+  .SLJC {
+    width: 500px;
+    // height: 220px;
   }
   #SLJC-chart {
     widows: 500px;
     height: 220px;
-
   }
 }
 .top {
@@ -609,12 +663,12 @@ import Monitor from '../components/Monitor.vue'
   right: 10px;
   z-index: 20;
   top: 10px;
-  width: 80px;
+
   height: 44px;
   display: flex;
   gap: 10px;
   .weather-icon2 {
-    width: 60px;
+    width: 44px;
     height: 44px;
     background-image: url("/img/weather.png");
     background-size: cover;
@@ -622,12 +676,27 @@ import Monitor from '../components/Monitor.vue'
     cursor: pointer;
   }
   .weather-icon1 {
-    width: 60px;
+    width: 44px;
     height: 44px;
     background-image: url("/img/timeline.png");
     background-size: cover;
     background-position: center;
     cursor: pointer;
+  }
+}
+.bottom-view {
+  position: absolute;
+  bottom: 300px;
+  right: 430px;
+  z-index: 20;
+  width:48px;
+  text-align: center;
+  .view {
+    width:48px;
+    height: 48px;
+    background-image: url("/img/location-view.png");
+    background-size: cover;
+    background-position: center;
   }
 }
 </style>
