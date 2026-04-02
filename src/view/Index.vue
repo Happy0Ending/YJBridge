@@ -363,7 +363,7 @@ import BackView from "../components/BackView.vue";
       padding: 10px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
       flex: 1;
 
       .location {
@@ -421,7 +421,6 @@ import BackView from "../components/BackView.vue";
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        gap: 5px;
 
         .alarm-number {
           font-family: PMZD;
@@ -447,7 +446,6 @@ import BackView from "../components/BackView.vue";
   .JTZH-TJ {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     flex: 1;
 
     .car-animation {
@@ -491,10 +489,7 @@ import BackView from "../components/BackView.vue";
         grid-area: bottom-right;
       }
     }
-
-    .JTZH-title {
-      font-size: 18px;
-    }
+   
 
     .JTZX-number {
       width: 55px;
