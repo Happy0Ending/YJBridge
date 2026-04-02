@@ -3,8 +3,24 @@
   <div class="weather-body">
     <div class="weather-bg"><span>天气系统</span></div>
     <div class="weather-type">
-      <div v-for="weatherType in weatherTypes" class="weatherType-body" v-on:click="()=>{sendMessage(weatherType.message)}">
-        <div :style="{width:'20px',height:'20px',backgroundImage:`url(${weatherType.url})`,backgroundPosition:'center',backgroundSize:'cover'}"></div>
+      <div
+        v-for="weatherType in weatherTypes"
+        class="weatherType-body"
+        v-on:click="
+          () => {
+            sendMessage(weatherType.message);
+          }
+        "
+      >
+        <div
+          :style="{
+            width: '20px',
+            height: '20px',
+            backgroundImage: `url(${weatherType.url})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+          }"
+        ></div>
         <div class="weather-title">{{ weatherType.title }}</div>
       </div>
     </div>
@@ -12,21 +28,24 @@
 </template>
 
 <script setup lang="ts">
-const sendMessage = (message:string)=>{
+const sendMessage = (message: string) => {
   const iframe = document.getElementById("iframeRender");
   if (iframe) {
-    iframe.contentWindow.postMessage(JSON.stringify({name: message}), '*');
-    console.log("发送天气消息",message);
+    iframe.contentWindow.postMessage(JSON.stringify({ name: message }), "*");
+    console.log("发送天气消息", message);
   }
-}
+};
 const weatherTypes = [
   { title: "晴天", url: "/weather/qingtian.png", message: "qingtian" },
   { title: "多云", url: "/weather/duoyun.png", message: "duoyun" },
   { title: "阴天", url: "/weather/yintian.png", message: "yintian" },
   { title: "小雨", url: "/weather/xiaoyu.png", message: "xiaoyu" },
+  { title: "中雨", url: "/weather/xiaoyu.png", message: "zhongyu" },
   { title: "大雨", url: "/weather/dayu.png", message: "dayu" },
-  { title: "雾天", url: "/weather/wutian.png", message: "wutian" },
-  { title: "雪天", url: "/weather/xuetian.png", message: "xuetian" },
+  { title: "雾天", url: "/weather/wutian.png", message: "wu" },
+  { title: "小雪", url: "/weather/xiaoxue.png", message: "xiaoxue" },
+  { title: "中雪", url: "/weather/zhongxue.png", message: "zhongxue" },
+  { title: "大雪", url: "/weather/daxue.png", message: "daxue" },
 ];
 </script>
 
@@ -37,8 +56,8 @@ const weatherTypes = [
   top: 88px;
   right: 21vw;
   width: 132px;
-  height: 258px;
-  z-index:20;
+  // height: 258px;
+  z-index: 20;
   background: linear-gradient(
     180deg,
     #2b81dc 7%,
@@ -57,7 +76,7 @@ const weatherTypes = [
     height: 30px;
     width: 133px;
     line-height: 30px;
-    font-size:18px;
+    font-size: 18px;
     font-family: PMZD;
     &span {
       background: linear-gradient(180deg, #ffffff 19%, #91fdff 100%);
@@ -73,14 +92,13 @@ const weatherTypes = [
   .weather-type {
     padding: 8px 10.5px 9.5px 9.5px;
     .weatherType-body {
-
       width: 112px;
       height: 28px;
       margin-top: 3px;
       display: flex;
       justify-content: center;
       gap: 10px;
-      align-items: center;;
+      align-items: center;
       line-height: 28px;
       background-image: url("/weather/wea-bg.png");
       background-size: cover;

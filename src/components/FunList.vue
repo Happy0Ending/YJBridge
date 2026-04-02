@@ -27,7 +27,12 @@ const funList = [
   {
     title: "结构云图",
     fun: () => {
-      console.log("结构云图");
+       const iframe = document.getElementById("iframeRender");
+      if (iframe) {
+        iframe.contentWindow.postMessage(JSON.stringify({name:"ylxs"}), "*");
+     
+        console.log("结构云图");
+      }
     },
   },
   {

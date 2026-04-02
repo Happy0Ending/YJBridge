@@ -7,7 +7,6 @@
       isShowCGQ = false;
     }
   "></CGQModal>
-  返回
 
   <div class="weather-top">
     <div class="back-index image-style" v-if="isShowBack" v-on:click="backIndex">
@@ -255,7 +254,7 @@ const backIndex = () => {
 const isShowWeather = ref(true);
 const isShowTimeline = ref(true);
 const isShowFunlist = ref(true);
-const url = "";
+const url = "https://view.le5le.com/3d?id=019d4377-8597-77ee-ada4-4572161bc195";
 const tesjfxList = [
   { title: "车辆超载", url: "/img/clcz.png", value: 65 },
   { title: "雨雪冰灾", url: "/img/yxbz.png", value: 65 },
@@ -747,13 +746,14 @@ import BackView from "../components/BackView.vue";
 
   .back-index {
     line-height: 44px;
-    width: 89px;
+    // width: 89px;
     height: 40px;
     color: #ffffff;
     background-image: url("/img/返回背景.png");
     font-size: 24px;
     font-family: PMZD;
     padding-left: 60px;
+    padding-right: 10px;
   }
 }
 
