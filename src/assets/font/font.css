@@ -23,3 +23,7 @@
     font-family: "PingFang SC";
     src: url("CN-Medium.otf");
 }
+@font-face {
+    font-family: YouSheBiaoTiHei;
+    src: url("YouSheBiaoTiHei-2.ttf");
+}

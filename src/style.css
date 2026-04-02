@@ -1,7 +1,18 @@
 #app {
   width: 100vw;
   height: 100vh;
+  color: #fff;
+  padding-left: 0px;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background-color: black;
+}
+
 
 .linear-text {
   background: linear-gradient(to bottom, #ffffff, #a4f7ff);
@@ -10,5 +21,3 @@
   -webkit-text-fill-color: transparent;
 }
 
-html {
-}
