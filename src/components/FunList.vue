@@ -1,6 +1,6 @@
 <template>
   <div class="fun-body">
-    <div class="fun-tab" v-for="fun in funList" v-on:click="fun.fun()">
+    <div class="fun-tab" v-for="fun in funList" v-on:click="showView(fun.title)">
       {{ fun.title }}
     </div>
   </div>
@@ -10,45 +10,31 @@
 const funList = [
   {
     title: "结构监测",
-    fun: () => {
-      console.log("结构监测");
-    },
   },
   {
     title: "挠度孪生",
-    fun: () => {
-      const iframe = document.getElementById("iframeRender");
-      if (iframe) {
-        iframe.contentWindow.postMessage(JSON.stringify({name:"wz1"}), "*");
-        console.log("发送天气消息", "wz");
-      }
-    },
+
   },
   {
     title: "结构云图",
-    fun: () => {
-      console.log("结构云图");
-    },
   },
   {
     title: "视频巡检",
-    fun: () => {
-      console.log("视频巡检");
-    },
   },
   {
     title: "数字漫游",
-    fun: () => {
-      console.log("数字漫游");
-    },
   },
   {
     title: "车辆跟踪",
-    fun: () => {
-      console.log("车辆跟踪");
-    },
   },
+  {
+    title: "车辆引导",
+  }
 ];
+const emit = defineEmits(["switchView"]);
+const showView = (key: string) => {
+  emit("switchView", key);
+};
 </script>
 
 <style lang="scss" scoped>

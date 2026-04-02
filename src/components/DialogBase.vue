@@ -1,9 +1,9 @@
 <template>
-  <div class="dialog-mask" v-if="visible">
+  <div class="dialog-mask">
     <div class="dialog">
       <div class="dialog-title">
         <div class="dialog-title-text">{{ title }}</div>
-        <div class="dialog-title-close" @click="closeDialog" v-if="isDialog">x</div>
+        <div class="dialog-title-close" @click="closeDialog">x</div>
       </div>
       <div class="dialog-content">
         <slot></slot>
@@ -13,25 +13,15 @@
 </template>
 
 <script setup>
-import { defineEmits, ref } from "vue";
+import { defineEmits, ref, onMounted } from "vue";
 const emit = defineEmits(["close"]);
 const props = defineProps({
   title: {
     type: String,
     default: "提示",
   },
-  visible: {
-    type: Boolean,
-    default: true,
-  },
-  isDialog: {
-    type: Boolean,
-    default: true,
-  },
 });
-const visible = ref(props.visible);
 const closeDialog = () => {
-  visible.value = false;
   emit("close");
 };
 </script>
@@ -43,7 +33,7 @@ const closeDialog = () => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 1000;
 
   .dialog {
     width: 52vw;
@@ -54,6 +44,7 @@ const closeDialog = () => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1000;
     padding: 0.8vw;
     box-sizing: border-box;
     display: flex;

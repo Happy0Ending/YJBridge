@@ -1,7 +1,20 @@
 <template>
-  <Dialog ref="dialogRef">
+  <Dialog ref="dialogRef" @close="emit('close')" :title="title">
     <div class="table-container">
-     
+      <table class="numeric-table">
+        <thead>
+          <tr>
+            <th v-for="col in columns" :key="col" class="table-cell">{{ col }}</th>
+          </tr>
+        </thead>
+        <tbody  v-if="data.length">
+          <tr v-for="row in data" :key="row">
+            <td v-for="col in cols" :key="col" class="table-cell">
+              {{ (row - 1) * cols + col }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <TPagination
         v-if="data.length"
         :total="data.length"
@@ -19,7 +32,8 @@
 
 <script setup>
 import Dialog from "./DialogBase.vue";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
+const emit = defineEmits(["close"]);
 const currentPage = ref(1);
 const handleChange = (page) => {
   currentPage.value = page;
@@ -37,19 +51,6 @@ const props = defineProps({
     type: String,
     default: "提示",
   },
-});
-// 表格配置：10行 x 10列 = 100个单元格
-const rows = 10;
-const cols = 3;
-
-// 生成行索引数组
-const rowIndices = computed(() => {
-  return Array.from({ length: rows }, (_, i) => i + 1);
-});
-
-// 生成列索引数组
-const colIndices = computed(() => {
-  return Array.from({ length: cols }, (_, i) => i + 1);
 });
 </script>
 

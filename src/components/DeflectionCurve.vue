@@ -11,13 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import * as echarts from 'echarts';
 import type { ECharts } from 'echarts';
 
 const deflectionCurveRef = ref<HTMLDivElement | null>(null);
 const chartInstance = ref<ECharts | null>(null);
 let resizeObserver: ResizeObserver | null = null;
+let rafId = 0;
 
 const stationPositions = ['0', '30', '107.5', '155', '211.25', '267.5', '323.75', '380'];
 const stationCodes = ['', 'G01', 'G03', 'T01', 'G04', 'G05', 'G06', 'G07'];
@@ -39,7 +40,7 @@ function buildOption(): echarts.EChartsOption {
       left: 10,
       right: 14,
       top: 40,
-      bottom: 28,
+      bottom: 10,
       containLabel: true,
     },
     legend: {
@@ -135,16 +136,17 @@ function buildOption(): echarts.EChartsOption {
   };
 }
 
+
 onMounted(() => {
   const el = deflectionCurveRef.value;
   if (!el) return;
-  chartInstance.value = echarts.init(el, undefined, { renderer: 'canvas' });
-  chartInstance.value.setOption(buildOption());
-  resizeObserver = new ResizeObserver(() => chartInstance.value?.resize());
-  resizeObserver.observe(el);
+  chartInstance.value = echarts.init(deflectionCurveRef.value);
+  chartInstance.value?.setOption(buildOption());
 });
 
 onUnmounted(() => {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = 0;
   resizeObserver?.disconnect();
   resizeObserver = null;
   chartInstance.value?.dispose();
@@ -153,11 +155,7 @@ onUnmounted(() => {
 </script>
 <style scoped>
 .deflection-curve {
-  width: 455px;
-  height: 403px;
-  position: absolute;
-  top: 100px;
-  left: 1200px;
+  height: 35vh;
   padding: 12px;
   box-sizing: border-box;
   background: url("/img/deflectionBg.png") no-repeat center center;
@@ -183,6 +181,7 @@ onUnmounted(() => {
   margin-right: 8px;
   margin-left: 24px;
 }
+
 .deflection-curve-container {
   flex: 1;
   min-height: 0;

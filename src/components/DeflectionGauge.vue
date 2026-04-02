@@ -17,13 +17,15 @@
           <span class="gauge-main-value-text">{{ item.label }}</span>
           <span class="gauge-main-value-unit">{{ item.value }}mm</span>
         </div>
-        <div class="gauge-main-value">
-        <div>
-          <div class="gauge-main-value-text">{{ valueLabel }}</div>
-          <div>{{ value }}mm</div>
+        <div class="gauge-main-value" :style="{
+          top: valuePct(currentValue) + '%',
+        }">
+          <div>
+            <div class="gauge-main-value-text">{{ valueLabel }}</div>
+            <div>{{ currentValue }}mm</div>
+          </div>
+          <img src="/img/arrow.png" alt="" class="gauge-main-value-arrow">
         </div>
-        <img src="/img/arrow.png" alt="" class="gauge-main-value-arrow">
-      </div>
       </div>
     </div>
   </div>
@@ -42,7 +44,6 @@ const props = withDefaults(
     statusText?: string;
     normal?: boolean;
     valueLabel?: string;
-    value: number;
     currentValue: number;
     unit?: string;
     min?: number;
@@ -79,14 +80,10 @@ function valuePct(v: number) {
 
 <style scoped>
 .deflection-gauge {
-  position: absolute;
-  top: 100px;
-  left: 600px;
   box-sizing: border-box;
   padding: 12px;
   border-radius: 8px;
-  width: 455px;
-  height: 547px;
+  height: 50vh;
   background: url("/img/deflection1Bg.png") no-repeat center center;
   background-size: 100% 100%;
   display: flex;
@@ -121,23 +118,19 @@ function valuePct(v: number) {
   width: 2px;
   height: 100%;
   position: absolute;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   background: linear-gradient(180deg, #ff4d4f88 0%, #f5d74288 100%);
-  -webkit-mask-image: repeating-linear-gradient(
-    to bottom,
-    #000 0,
-    #000 5px,
-    transparent 5px,
-    transparent 10px
-  );
-  mask-image: repeating-linear-gradient(
-    to bottom,
-    #000 0,
-    #000 5px,
-    transparent 5px,
-    transparent 10px
-  );
+  -webkit-mask-image: repeating-linear-gradient(to bottom,
+      #000 0,
+      #000 5px,
+      transparent 5px,
+      transparent 10px);
+  mask-image: repeating-linear-gradient(to bottom,
+      #000 0,
+      #000 5px,
+      transparent 5px,
+      transparent 10px);
 }
 
 .gauge-main-value-wrap {
@@ -154,8 +147,8 @@ function valuePct(v: number) {
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: calc(50% - 25px);
-  font-size: 18px;
+  left: calc(45% - 25px);
+
 }
 
 .gauge-main-value-iconLine {
@@ -166,7 +159,7 @@ function valuePct(v: number) {
 
 .gauge-main-value {
   position: absolute;
-  right: 40%;
+  right: 50%;
   transform: translateY(-50%);
   width: 50%;
   height: 50px;
@@ -180,5 +173,4 @@ function valuePct(v: number) {
   height: 32px;
   width: 48px;
 }
-
 </style>

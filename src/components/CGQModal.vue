@@ -1,7 +1,6 @@
 <template>
   <div class="CGQ-bg">
     <div style="position: relative">
-      <div class="close" @click="emit('close')"></div>
       <div class="CGQ-body" v-for="(cgq,index) in CGQ.titles">
         <div class="title">{{ cgq }}</div>
         <div class="CGQ-content">
@@ -18,7 +17,6 @@
 <script setup lang="ts">
 import { useGetData } from '../store/useStore';
 
-const emit = defineEmits(["close"]);
 const CGQ = useGetData().CGQData;
 
 </script>

@@ -61,7 +61,7 @@ const getData = reactive({
   /* 汽车监测 */
   carList: [
     {
-      carImage: "/img/yintian.png",
+      carImage: "/img/car.png",
       carID: "鄂A·666666",
       speed: "85km/h",
       Lane: "左1车道",
@@ -69,7 +69,7 @@ const getData = reactive({
       weight: "100吨"//
     },
     {
-      carImage: "/img/yintian.png",
+      carImage: "/img/car.png",
       carID: "鄂A·6888",
       speed: "85km/h",
       Lane: "左1车道",

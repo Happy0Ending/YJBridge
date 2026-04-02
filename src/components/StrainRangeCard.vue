@@ -17,6 +17,26 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
+onMounted(() => {
+  if(props.options.length == 0){
+    props.options.push({
+      title: '主梁应变范围',
+      unit: 'με',
+      minValue: -30,
+      maxValue: 30,
+      gradient: defaultGradient,
+    });
+    props.options.push({
+      title: '主塔应变范围',
+      unit: 'με',
+      minValue: -10,
+      maxValue: 10,
+      gradient: defaultGradient,
+    });
+  }
+  console.log(props.options, 'options');
+});
 const props =
   defineProps<{
     options: {
@@ -29,16 +49,20 @@ const props =
   }>()
 
 
+
+
 const defaultGradient =
   "linear-gradient(90deg, #40e0d0 0%, #90ee90 35%, #ffa500 65%, #ff4500 100%)";
 </script>
 
 <style scoped>
 .strain-range-card {
-  width: 455px;
-  position: absolute;
-  top: 1000px;
-  left: 100px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 10vh;
 }
 .strain-card {
   padding: 14px 16px 12px;
