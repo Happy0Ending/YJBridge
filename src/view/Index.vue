@@ -2,19 +2,29 @@
   <div class="timer">
     <Timer></Timer>
   </div>
-  <CGQModal v-if="isShowCGQ" @close="()=>{isShowCGQ = false}"></CGQModal>
-  <div class="weather-top">
-    <div
-      class="weather-icon1"
-      v-on:click="
+  <CGQModal
+    v-if="isShowCGQ"
+    @close="
+      () => {
+        isShowCGQ = false;
+      }
+    "
+  ></CGQModal>
+  返回
+
+<div class="weather-top">
+  <div class="back-index image-style" v-if="isShowBack" v-on:click="backIndex">返回</div>
+  <div
+  class="weather-icon1"
+  v-on:click="
         () => {
           isShowTimeline = !isShowTimeline;
         }
-      "
+        "
     ></div>
     <div
-      class="weather-icon2"
-      v-on:click="
+    class="weather-icon2"
+    v-on:click="
         () => {
           isShowWeather = !isShowWeather;
         }
@@ -28,7 +38,7 @@
   <div class="top" id="top-id">京港澳高速汉江特大桥健康监测</div>
   <div class="left" id="left-id">
     <div class="left-bridge-base">
-      <div class="base-title">汉江特大桥(京港澳高速）</div>
+      <div class="base-title">{{ getData.bridgeName }}</div>
       <div class="style-flex">
         <div class="">位置：</div>
         <div class="location-text">湖北省-武汉市蔡甸区</div>
@@ -37,25 +47,46 @@
         <img width="309px" height="131px" src="/img/bridge-image.png" alt="" />
       </div>
       <div class="bridge-text-content">
-        主桥全长760m，为(60+95+450+95+60)m双塔双索面混合式组合梁斜拉桥。斜拉索为平行素面，扇形布置，梁上索距中跨12m，边跨7.5m拉索横桥向中心距22.25m。桥面全宽为23.75m1.5(检修道+斜拉索锚固区)+0.75m(防撞护栏)+1.25m(左侧路肩带)+4x3.75m(机动车道)+3.0m(右侧路肩带)+0.75(防撞护栏)+1.5m(检修道+斜拉素错固区)。
+        {{ getData.introduction }}
       </div>
     </div>
     <div class="alarm-content">
       <div class="title-second">已处理告警统计</div>
       <div class="alarm-level-content">
         <div class="alarm-body">
-          <div class="alarm-number">413</div>
-          <image src="/img/alarm1.png"></image>
+          <div class="alarm-number">{{ getData.alarmLevel1 }}</div>
+          <div
+            class="image-style"
+            :style="{
+              width: '104px',
+              height: '65px',
+              backgroundImage: `url('/img/alarm1.png')`,
+            }"
+          ></div>
           <div class="alarm-tag">超限一级</div>
         </div>
         <div class="alarm-body">
-          <div class="alarm-number">413</div>
-          <image src="/img/alarm2.png"></image>
+          <div class="alarm-number">{{ getData.alarmLevel2 }}</div>
+          <div
+            class="image-style"
+            :style="{
+              width: '104px',
+              height: '65px',
+              backgroundImage: `url('/img/alarm2.png')`,
+            }"
+          ></div>
           <div class="alarm-tag">超限二级</div>
         </div>
         <div class="alarm-body">
-          <div class="alarm-number">413</div>
-          <image src="/img/alarm3.png"></image>
+          <div class="alarm-number">{{ getData.alarmLevel3 }}</div>
+          <div
+            class="image-style"
+            :style="{
+              width: '104px',
+              height: '65px',
+              backgroundImage: `url('/img/alarm3.png')`,
+            }"
+          ></div>
           <div class="alarm-tag">超限三级</div>
         </div>
       </div>
@@ -68,7 +99,7 @@
             <span class="JTZH-title">左幅：上行</span
             ><span class="JTZX-unit">(辆)</span>
           </div>
-          <div class="JTZX-number">12</div>
+          <div class="JTZX-number">{{ getData.sx }}</div>
         </div>
 
         <!-- 左下：第二行第一列 -->
@@ -77,24 +108,32 @@
             <span class="JTZH-title">总超重车辆</span
             ><span class="JTZX-unit">(辆)</span>
           </div>
-          <div class="JTZX-number">12</div>
+          <div class="JTZX-number">{{ getData.cz }}</div>
         </div>
 
         <!-- 合并区域：占据第二列（跨两行） -->
         <div class="merged-area" style="position: relative">
-          <image src="/img/car.png" class="car-animation"></image>
+          <div
+            class="image-style car-animation"
+            :style="{
+              width: '110px',
+              height: '60px',
+              backgroundImage: `url('/img/car.png')`,
+            }"
+          ></div>
 
-          <image
-            src="/img/car-station.png"
-            style="
-              position: absolute;
-              top: 50%;
-              left: 40%;
-              transform: translate(-50%);
-            "
-            width="105"
-            height="70"
-          ></image>
+          <div
+            class="image-style"
+            :style="{
+              position: 'absolute',
+              top: '50%',
+              left: '40%',
+              transform: 'translate(-50%)',
+              width: '105px',
+              height: '80px',
+              backgroundImage: `url('/img/car-station.png')`,
+            }"
+          ></div>
         </div>
 
         <!-- 右上：第一行第三列 -->
@@ -103,7 +142,7 @@
             <span class="JTZH-title">右幅：下行</span
             ><span class="JTZX-unit">(辆)</span>
           </div>
-          <div class="JTZX-number">12</div>
+          <div class="JTZX-number">{{ getData.xx }}</div>
         </div>
 
         <!-- 右下：第二行第三列 -->
@@ -112,7 +151,7 @@
             <span class="JTZH-title">总超速车辆</span
             ><span class="JTZX-unit">(辆)</span>
           </div>
-          <div class="JTZX-number">12</div>
+          <div class="JTZX-number">{{ getData.cs }}</div>
         </div>
       </div>
     </div>
@@ -212,9 +251,8 @@
       <div id="SLJC-chart"></div>
     </div>
   </div>
-  <div class="bottom-view" v-on:click="backView">
-    <div class="view"></div>
-    <div>还原</div>
+  <div class="bottom-view">
+    <BackView></BackView>
   </div>
   <div class="center">
     <div class="center-modal" id="center-id"></div>
@@ -240,14 +278,12 @@ import FunList from "../components/FunList.vue";
 import CGQModal from "../components/CGQModal.vue";
 import { createQQNQX } from "../chart/qqnqx";
 import { createSLJC } from "../chart/sljc";
+const { getData } = useGetData();
 const isShowCGQ = ref(true);
-const backView = ()=>{
-  const iframe = document.getElementById("iframeRender");
-  if (iframe) {
-    iframe.contentWindow.postMessage(JSON.stringify({name:"back"}), "*");
-    console.log("发送还原消息", "backView");
-  }
-}
+const isShowBack = ref(true);
+const backIndex = () => {
+  console.log("back");
+};
 const isShowWeather = ref(true);
 const isShowTimeline = ref(true);
 const isShowFunlist = ref(true);
@@ -261,8 +297,8 @@ const tesjfxList = [
   { title: "地震", url: "/img/dz.png", value: 65 },
   { title: "涡振", url: "/img/wz.png", value: 65 },
 ];
-let chart1 = null;
-let chart2 = null;
+let chart1: any = null;
+let chart2: any = null;
 onMounted(() => {
   chart1 = createQQNQX();
   chart2 = createSLJC();
@@ -281,6 +317,8 @@ onUnmounted(() => {
 import AlterDialog from "../components/MainBeamDeflection.vue";
 import StatisticsDialog from "../components/Statistics.vue";
 import Monitor from "../components/Monitor.vue";
+import { useGetData } from "../store/useStore";
+import BackView from "../components/BackView.vue";
 </script>
 <style lang="scss">
 @keyframes aniCar {
@@ -439,7 +477,6 @@ import Monitor from "../components/Monitor.vue";
     padding-bottom: 48px;
     .car-animation {
       margin-top: 20px;
-      margin-left: -20px;
       animation: aniCar 1s ease-in-out infinite alternate;
     }
     .grid-content {
@@ -665,11 +702,11 @@ import Monitor from "../components/Monitor.vue";
   position: absolute;
   right: 10px;
   z-index: 20;
-  top: 10px;
+  top: 30px;
 
   height: 44px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   .weather-icon2 {
     width: 44px;
     height: 44px;
@@ -686,20 +723,21 @@ import Monitor from "../components/Monitor.vue";
     background-position: center;
     cursor: pointer;
   }
+  .back-index {
+    line-height: 44px;
+    width: 89px;
+    height: 40px;
+    color: #ffffff;
+    background-image: url("/img/返回背景.png");
+    font-size: 24px;
+    font-family: PMZD;
+    padding-left: 60px;
+  }
 }
 .bottom-view {
   position: absolute;
   bottom: 300px;
   right: 430px;
   z-index: 20;
-  width:48px;
-  text-align: center;
-  .view {
-    width:48px;
-    height: 48px;
-    background-image: url("/img/location-view.png");
-    background-size: cover;
-    background-position: center;
-  }
 }
 </style>

@@ -21,3 +21,11 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.image-style {
+  background-size: cover;
+  background-position: center;
+}
+
+image {
+  display: block;
+}
