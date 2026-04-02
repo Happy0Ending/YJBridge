@@ -67,7 +67,7 @@ export function fetchOnce(){
       const childrenTitle = [];
       res.data.data.children.forEach((child:any)=>{
         titles.push(child.title);
-        const ccObj = child.children.map((cc)=>{
+        const ccObj = child.children.map((cc:any)=>{
           return {
             title:cc.title,
             num:cc.num,

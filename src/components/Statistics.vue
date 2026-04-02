@@ -1,20 +1,7 @@
 <template>
   <Dialog ref="dialogRef">
     <div class="table-container">
-      <table class="numeric-table">
-        <thead>
-          <tr>
-            <th v-for="col in columns" :key="col" class="table-cell">{{ col }}</th>
-          </tr>
-        </thead>
-        <tbody  v-if="data.length">
-          <tr v-for="row in data" :key="row">
-            <td v-for="col in cols" :key="col" class="table-cell">
-              {{ (row - 1) * cols + col }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+     
       <TPagination
         v-if="data.length"
         :total="data.length"

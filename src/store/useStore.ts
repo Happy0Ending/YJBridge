@@ -59,7 +59,24 @@ const getData = reactive({
   SLcqz: [],
   SLbjxx3: [],
   /* 汽车监测 */
-  carList: []
+  carList: [
+    {
+      carImage: "/img/yintian.png",
+      carID: "鄂A·666666",
+      speed: "85km/h",
+      Lane: "左1车道",
+      clzs: "二轴",//车辆轴数
+      weight: "100吨"//
+    },
+    {
+      carImage: "/img/yintian.png",
+      carID: "鄂A·6888",
+      speed: "85km/h",
+      Lane: "左1车道",
+      clzs: "二轴",//车辆轴数
+      weight: "100吨"//
+    }
+  ]
 });
 
 const CGQData = reactive({
