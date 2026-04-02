@@ -2,20 +2,25 @@
   <div class="CGQ-bg">
     <div style="position: relative">
       <div class="close" @click="emit('close')"></div>
-      <div class="CGQ-body">
-        <div class="title">作用</div>
-        <div class="CGQ-content"></div>
+      <div class="CGQ-body" v-for="(cgq,index) in CGQ.titles">
+        <div class="title">{{ cgq }}</div>
+        <div class="CGQ-content">
+          <div class="CGQ-type"v-for="cgqtype in CGQ.CGQList[index]">
+            {{cgqtype.title+`(${cgqtype.num})` }}
+          </div>
+        </div>
       </div>
-      <div class="CGQ-body">
-        <div class="title">响应</div>
-        <div class="CGQ-content"></div>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useGetData } from '../store/useStore';
+
 const emit = defineEmits(["close"]);
+const CGQ = useGetData().CGQData;
+
 </script>
 
 <style scoped lang="scss">
@@ -54,6 +59,21 @@ const emit = defineEmits(["close"]);
     background-image: url("/CGQ/title.png");
     background-size: cover;
     background-position: center;
+  }
+  .CGQ-content{
+    padding: 20px 18px 44px 20px;
+    display: flex;
+    gap:20px;
+    flex-wrap: wrap;
+    .CGQ-type{
+      height: 36px;
+      line-height: 36px;
+      background-image: url("/CGQ/CGQ-bg.png");
+      // background-color: aqua;
+      padding-left: 20px;
+      padding-right: 10px;
+      background-repeat: no-repeat;
+    }
   }
 }
 </style>

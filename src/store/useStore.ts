@@ -7,8 +7,13 @@ const getData = reactive({
   bridgeImage: "",
   /* 已处理告警统计 */
   alarmLevel1: 413,
+  alarm1List: [],
+
   alarmLevel2: 126,
+  alarm2List: [],
+
   alarmLevel3: 57,
+  alarm3List: [],
   /* 交通载荷 */
   sx: 12,//上行车辆
   xx: 20,//下行车辆
@@ -30,7 +35,7 @@ const getData = reactive({
     05 车辆超载
     06 船舶撞击
     07 雨雪冰灾 */
-    /* 特殊事件模块 */
+  /* 特殊事件模块 */
   eventWZ: 96,
   eventQTF: 43,
   eventYCZD: 22,
@@ -38,11 +43,49 @@ const getData = reactive({
   eventCLCZ: 34,
   eventCBZJ: 54,
   eventYXBZ: 99,
+  /* 全桥梁挠度曲线 */
+  QQ_xaxis: [],
+  QQ_XYValue: [],
+  QQ_XYName: [],
+  QQ_SYValue: [],
+  QQ_SYName: [],
+  /* 索力监测 */
+  SLaxis: [],
+  SLbjsx3: [],
+  SLcds: [],
+  SLbjsx2: [],
+  SLcsz: [],
+  SLbjxx2: [],
+  SLcqz: [],
+  SLbjxx3: [],
+  /* 汽车监测 */
+  carList: []
 });
 
-export const useGetData = ()=>{
+const CGQData = reactive({
+  titles: [],
+  CGQList: [],
+})
+CGQData.titles = ["作用", "响应"] as any;
+CGQData.CGQList = [
+  [
+    { title: "结构温度", num: 12 },
+    { title: "斜拉索温度", num: 20 },
+  ],
+  [
+    { title: "主梁竖向位移", num: 23 },
+    { title: "支座位移", num: 23 },
+    { title: "梁端纵向位移", num: 23 },
+    { title: "塔顶偏位", num: 23 },
+    { title: "主梁应变", num: 23 },
+    { title: "斜拉索索力", num: 23 },
+    { title: "拉索（吊杆、索股）振动", num: 23 },
+  ]
+] as any;
+export const useGetData = () => {
 
   return {
+    CGQData,
     getData
   }
 }
