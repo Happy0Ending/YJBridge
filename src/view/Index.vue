@@ -302,10 +302,12 @@ const handleAlarmLevel = (level: string) => {
 
   .back-index {
     line-height: 44px;
+    padding-right: 20px;
     // width: 89px;
     height: 40px;
     color: #ffffff;
     background-image: url("/img/返回背景.png");
+    background-size: 100% 100%;
     font-size: 24px;
     font-family: PMZD;
     padding-left: 60px;
