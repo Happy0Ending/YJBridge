@@ -12,19 +12,25 @@
   ></CGQModal>
   返回
 
-<div class="weather-top">
-  <div class="back-index image-style" v-if="isShowBack" v-on:click="backIndex">返回</div>
-  <div
-  class="weather-icon1"
-  v-on:click="
+  <div class="weather-top">
+    <div
+      class="back-index image-style"
+      v-if="isShowBack"
+      v-on:click="backIndex"
+    >
+      返回
+    </div>
+    <div
+      class="weather-icon1"
+      v-on:click="
         () => {
           isShowTimeline = !isShowTimeline;
         }
-        "
+      "
     ></div>
     <div
-    class="weather-icon2"
-    v-on:click="
+      class="weather-icon2"
+      v-on:click="
         () => {
           isShowWeather = !isShowWeather;
         }
@@ -162,48 +168,50 @@
       <div class="JGJC-body">
         <div class="JGJC-flex">
           <div>
-            <image src="/img/主梁饶度.png" width="66px" height="46px"></image>
+            <div class="image-style-46-66 image-style" :style="{backgroundImage:`url(${'/img/主梁饶度.png'})`}"></div>
           </div>
           <div>
             <div>
-              <span class="JGJC-unit-number">-88.6</span
-              ><span class="JGJC-unit">mm</span>
+              <span class="JGJC-unit-number">{{getData.ZLRD}}</span
+              ><span class="JGJC-unit">{{ getData.ZLRDUnit }}</span>
             </div>
             <div class="JGJC-title">主梁挠度</div>
           </div>
         </div>
         <div class="JGJC-flex">
           <div>
-            <image src="/img/塔顶偏拉.png" width="66px" height="46px"></image>
+            <div class="image-style-46-66 image-style" :style="{backgroundImage:`url(${'/img/塔顶偏拉.png'})`}"></div>
+           
           </div>
           <div>
             <div>
-              <span class="JGJC-unit-number">-88.6</span
-              ><span class="JGJC-unit">mm</span>
+              <span class="JGJC-unit-number">{{getData.TDPL}}</span
+              ><span class="JGJC-unit">{{getData.TDPLUnit}}</span>
             </div>
             <div class="JGJC-title">塔顶偏拉</div>
           </div>
         </div>
         <div class="JGJC-flex">
           <div>
-            <image src="/img/梁端位移.png" width="66px" height="46px"></image>
+             <div class="image-style-46-66 image-style" :style="{backgroundImage:`url(${'/img/梁端位移.png'})`}"></div>
+           
           </div>
           <div>
             <div>
-              <span class="JGJC-unit-number">-88.6</span
-              ><span class="JGJC-unit">mm</span>
+              <span class="JGJC-unit-number">{{ getData.LDWY }}</span
+              ><span class="JGJC-unit">{{ getData.LDWYUnit }}</span>
             </div>
             <div class="JGJC-title">梁端位移</div>
           </div>
         </div>
         <div class="JGJC-flex">
           <div>
-            <image src="/img/索力.png" width="66px" height="46px"></image>
+             <div class="image-style-46-66 image-style" :style="{backgroundImage:`url(${'/img/索力.png'})`}"></div>
           </div>
           <div>
             <div>
-              <span class="JGJC-unit-number">-88.6</span
-              ><span class="JGJC-unit">KN</span>
+              <span class="JGJC-unit-number">{{ getData.SL }}</span
+              ><span class="JGJC-unit">{{ getData.SLUnit }}</span>
             </div>
             <div class="JGJC-title">索力</div>
           </div>
@@ -273,12 +281,12 @@
   <DeflectionCurve /> -->
 </template>
 <script setup lang="ts">
-import AlterDialog from '../components/MainBeamDeflection.vue'
-import StatisticsDialog from '../components/Statistics.vue'
-import Monitor from '../components/Monitor.vue'
-import StrainRangeCard from '../components/StrainRangeCard.vue'
-import DeflectionThresholdGauge from '../components/DeflectionThresholdGauge.vue'
-import DeflectionCurve from '../components/DeflectionCurve.vue'
+import AlterDialog from "../components/MainBeamDeflection.vue";
+import StatisticsDialog from "../components/Statistics.vue";
+import Monitor from "../components/Monitor.vue";
+import StrainRangeCard from "../components/StrainRangeCard.vue";
+import DeflectionThresholdGauge from "../components/DeflectionThresholdGauge.vue";
+import DeflectionCurve from "../components/DeflectionCurve.vue";
 import { ref, onMounted, onUnmounted } from "vue";
 import Timer from "../components/Timer.vue";
 import Weather from "../components/Weather.vue";
