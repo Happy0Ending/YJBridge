@@ -44,9 +44,11 @@ import { ref, computed,watch } from "vue";
 
 // 刻度数值
 const tickValues = [0, 6, 12, 18, 24];
+const data = new Date();
+
 
 // 当前时间值（0～24）
-const timeValue = ref(12);
+const timeValue = ref(data.getHours()+data.getMinutes()/60);
 
 // 计算滑块位置与进度条宽度的百分比
 const percent = computed(() => (timeValue.value / 24) * 100);

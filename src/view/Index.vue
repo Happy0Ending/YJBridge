@@ -302,7 +302,7 @@ const handleAlarmLevel = (level: string) => {
 
   .back-index {
     line-height: 44px;
-    width: 89px;
+    // width: 89px;
     height: 40px;
     color: #ffffff;
     background-image: url("/img/返回背景.png");
