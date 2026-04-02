@@ -266,10 +266,19 @@
     <iframe id="iframeRender" style="width: 100%; height: 100%"></iframe>
   </div> -->
   <!-- <AlterDialog ref="dialogRef"></AlterDialog> -->
-  <StatisticsDialog ref="statisticsDialogRef"></StatisticsDialog>
+  <!-- <StatisticsDialog ref="statisticsDialogRef"></StatisticsDialog>
+  <StrainRangeCard :options="[{ title: '主梁应变范围', minValue: -30, maxValue: 30, unit: 'με' }, { title: '主塔应变范围', minValue: -10, maxValue: 10, unit: 'με' }]" /> -->
   <!-- <Monitor ></Monitor> -->
+  <!-- <DeflectionThresholdGauge title="跨中挠度指标" :currentValue="10" />
+  <DeflectionCurve /> -->
 </template>
 <script setup lang="ts">
+import AlterDialog from '../components/MainBeamDeflection.vue'
+import StatisticsDialog from '../components/Statistics.vue'
+import Monitor from '../components/Monitor.vue'
+import StrainRangeCard from '../components/StrainRangeCard.vue'
+import DeflectionThresholdGauge from '../components/DeflectionThresholdGauge.vue'
+import DeflectionCurve from '../components/DeflectionCurve.vue'
 import { ref, onMounted, onUnmounted } from "vue";
 import Timer from "../components/Timer.vue";
 import Weather from "../components/Weather.vue";
@@ -314,9 +323,6 @@ onUnmounted(() => {
     chart2.dispose();
   }
 });
-import AlterDialog from "../components/MainBeamDeflection.vue";
-import StatisticsDialog from "../components/Statistics.vue";
-import Monitor from "../components/Monitor.vue";
 import { useGetData } from "../store/useStore";
 import BackView from "../components/BackView.vue";
 </script>
