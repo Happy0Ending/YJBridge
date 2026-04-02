@@ -54,7 +54,7 @@ const funList = [
 <style lang="scss" scoped>
 .fun-body {
   position: absolute;
-  left: 480px;
+  left: 21vw;
   top: 100px;
   z-index: 20;
   .fun-tab {

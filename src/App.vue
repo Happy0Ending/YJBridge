@@ -7,3 +7,8 @@ import Index from './view/Index.vue';
 <template>
   <Index />
 </template>
+<style>
+div {
+  box-sizing: border-box;
+}
+</style>

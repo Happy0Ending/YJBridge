@@ -35,7 +35,7 @@ const weatherTypes = [
   user-select: none;
   position: absolute;
   top: 88px;
-  right: 420px;
+  right: 21vw;
   width: 132px;
   height: 258px;
   z-index:20;
